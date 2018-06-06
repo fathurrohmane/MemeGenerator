@@ -84,10 +84,10 @@ public class EditActivityFragment extends Fragment {
 
         switch (imageType) {
             case PhotoActivity.EXTRA_IMAGE_TYPE_BITMAP:
-                addBackground(backgroundBitmap, constraintLayout);
+                addBackground(backgroundBitmap, imageViewBackground);
                 break;
             case PhotoActivity.EXTRA_IMAGE_TYPE_URI:
-                addBackground(backgroundUri, constraintLayout);
+                addBackground(backgroundUri, imageViewBackground);
                 break;
             case PhotoActivity.EXTRA_IMAGE_TYPE_URL:
                 Picasso.get().load(backgroundResult.getImageUrl()).into(imageViewBackground);
@@ -97,24 +97,12 @@ public class EditActivityFragment extends Fragment {
         return view;
     }
 
-    private void addBackground(Bitmap bitmap, ConstraintLayout layout) {
-        ImageView imageView = new ImageView(getContext());
-        FrameLayout.LayoutParams params =
-                new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+    private void addBackground(Bitmap bitmap, ImageView imageView) {
         imageView.setImageBitmap(bitmap);
-        imageView.setLayoutParams(params);
-        layout.addView(imageView);
 
     }
 
-    private void addBackground(Uri uri, ConstraintLayout layout) {
-        ImageView imageView = new ImageView(getContext());
-        FrameLayout.LayoutParams params =
-                new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-
+    private void addBackground(Uri uri, ImageView imageView) {
         Picasso.get().load(uri).into(imageView);
-        imageView.setLayoutParams(params);
-        layout.addView(imageView);
-
     }
 }
